@@ -142,8 +142,8 @@ Esses serviços foram selecionados como alvos para a próxima fase.
 
 | Categoria | Quantidade | Status |
 |-----------|------------|---------|
-| HTTP Security Headers | 4 vulnerabilidades | ❌ Crítico |
-| Cookie Security | 4 vulnerabilidades | ❌ Crítico |
+| HTTP Security Headers | 4 vulnerabilidades | Crítico |
+| Cookie Security | 4 vulnerabilidades | Crítico |
 | Content Security Policy | 1 vulnerabilidade |  Médio |
 | SQL Injection | 0 vulnerabilidades | Seguro |
 | XSS | 0 vulnerabilidades | Seguro |
