@@ -6,7 +6,7 @@ Laboratório prático de auditoria de segurança para demonstrar vulnerabilidade
 
 ![Licença](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kali-linux&logoColor=white)
-![VMware Fusion](https://images.icon-icons.com/3053/PNG/512/vmware_fusion_alt_macos_bigsur_icon_189579.png)
+![VMware Fusion](https://img.shields.io/badge/VMware_Fusion-607078?style=for-the-badge&logo=vmware&logoColor=white)
 
 ## Sumário
 
