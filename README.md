@@ -6,7 +6,7 @@ Laboratório prático de auditoria de segurança para demonstrar vulnerabilidade
 
 ![Licença](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kali-linux&logoColor=white)
-![VirtualBox](https://img.shields.io/badge/VirtualBox-2D3748?style=for-the-badge&logo=virtualbox&logoColor=white)
+![VMware Fusion](https://images.icon-icons.com/3053/PNG/512/vmware_fusion_alt_macos_bigsur_icon_189579.png)
 
 ## Sumário
 
@@ -116,8 +116,6 @@ Esses serviços foram selecionados como alvos para a próxima fase.
 - **Arquivos Expostos:** phpinfo.php, phpMyAdmin, diretórios do sistema
 
 **Recomendação Imediata:** Atualizar servidor web e restringir acesso a arquivos sensíveis.
-
-
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
