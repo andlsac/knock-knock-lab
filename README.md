@@ -261,7 +261,7 @@ O Hydra testa cada usuário do arquivo usuarios.txt com a senha fixa msfadmin no
 O ataque identificou que o usuário **`msfadmin`** possuía a senha `msfadmin`, permitindo o acesso aos compartilhamentos de rede.
 
 **Evidência:**
-![Sucesso no Ataque SMB](images/smb_success.png)
+![Sucesso no Ataque SMB](images/smbimagem.png)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
