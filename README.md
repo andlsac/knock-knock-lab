@@ -282,7 +282,31 @@ O ataque identificou que o usuário **`msfadmin`** possuía a senha `msfadmin`, 
 
 ## Conclusão
 
-Este desafio prático foi fundamental para consolidar o entendimento sobre a mecânica dos ataques de força bruta. A principal lição é que a segurança de um sistema é tão forte quanto sua senha mais fraca. A execução em um ambiente de laboratório permitiu explorar as capacidades de ferramentas ofensivas como o Medusa de forma segura e ética, reforçando a mentalidade de que, para defender um sistema, é preciso primeiro entender como atacá-lo.
+O laboratório evidenciou vulnerabilidades críticas que comprometem a segurança dos sistemas. Os pontos mais urgentes para correção são:
+
+### Pontos Críticos a Serem Corrigidos Imediatamente:
+
+1. **Credenciais Padrão e Fracas**
+   - Remover senhas padrão como "msfadmin" e "password"
+   - Implementar política de senhas complexas com mínimo de 12 caracteres
+
+2. **Proteção Contra Força Bruta**
+   - Configurar bloqueio automático de contas após 5 tentativas falhas
+   - Implementar delays progressivos entre tentativas de login
+
+3. **Serviços Desatualizados**
+   - Atualizar Apache 2.2.8 para versão suportada
+   - Atualizar PHP 5.2.4 para versão atual
+   - Correção do vsftpd 2.3.4 vulnerável
+
+4. **Configurações de Segurança Web**
+   - Implementar cabeçalhos de segurança (CSP, X-Frame-Options)
+   - Configurar flags de segurança em cookies (HttpOnly, Secure)
+   - Remover arquivos sensíveis como phpinfo.php
+
+5. **Falta de Autenticação Multi-Fator**
+   - Implementar MFA para acesso administrativo
+   - Adicionar camada extra de proteção em logins críticos
 
 ---
 
@@ -294,11 +318,10 @@ Este projeto está licenciado sob a Licença MIT. Consulte o arquivo `LICENSE` p
 
 ## Autor
 
-**[Seu Nome Completo]**
+**André Luís Alves Campos**
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/seu-linkedin/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/seu-github/)
-````
+-------------------------------------------------------------------------
 
-
-__________________________________________________________________________________________________________________________________________________
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/andlsac)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/andlsac)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/andlsac)
