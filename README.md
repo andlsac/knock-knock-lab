@@ -92,23 +92,24 @@ Esses serviços foram selecionados como alvos para a próxima fase.
 **Evidência:**
 ![Resultado do Nmap](images/nmap_scan.png)
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 ## Análise de Vulnerabilidades com Ferramentas Automatizadas
 
 ### 2.1 Scanner de Servidor Web (Nikto)
 **Objetivo:** Identificar problemas de configuração e vulnerabilidades conhecidas no servidor.
 
-**📄 Output completo disponível em:** `./logs/nikto_scan.txt`
+**Output completo disponível em:** `./logs/nikto_scan.txt`
 
-**📊 Principais Vulnerabilidades Detectadas:**
+**Principais Vulnerabilidades Detectadas:**
 
-| Vulnerabilidade | Severidade | Evidência |
+| Vulnerabilidade | Risco | Evidência |
 |----------------|------------|-----------|
-| Servidor Apache desatualizado (2.2.8) | 🔴 Alta | Versão EOL identificada |
-| Arquivo phpinfo.php exposto | 🔴 Alta | Informações do sistema acessíveis |
-| Diretórios sensíveis acessíveis (/doc/, /test/) | 🟡 Média | Listagem de diretórios ativa |
-| Método TRACE ativo | 🟡 Média | Vulnerável a Cross-Site Tracing |
-| phpMyAdmin acessível sem restrições | 🔴 Alta | Painel administrativo exposto |
+| Servidor Apache desatualizado (2.2.8) | Alto | Versão EOL identificada |
+| Arquivo phpinfo.php exposto | Alto | Informações do sistema acessíveis |
+| Diretórios sensíveis acessíveis (/doc/, /test/) | Médio | Listagem de diretórios ativa |
+| Método TRACE ativo | Médio | Vulnerável a Cross-Site Tracing |
+| phpMyAdmin acessível sem restrições | Alto | Painel administrativo exposto |
 
 **Nota Técnica:**
 - **Servidor:** Apache/2.2.8 (Ubuntu) + PHP/5.2.4
@@ -116,6 +117,55 @@ Esses serviços foram selecionados como alvos para a próxima fase.
 - **Arquivos Expostos:** phpinfo.php, phpMyAdmin, diretórios do sistema
 
 **Recomendação Imediata:** Atualizar servidor web e restringir acesso a arquivos sensíveis.
+
+## 2.2 Scanner de Aplicação Web (Wapiti)
+
+**Objetivo:** Analisar vulnerabilidades específicas na aplicação DVWA.
+
+**Output completo disponível em:** `./logs/scan_wapiti.txt`
+
+**Principais Vulnerabilidades Detectadas:**
+
+| Categoria | Vulnerabilidade | Risco | Evidência |
+|-----------|----------------|------------|-----------|
+| **Content Security Policy** | CSP não configurado | Médio | Falta cabeçalho Content-Security-Policy |
+| **HTTP Headers** | X-Frame-Options ausente | Médio | Permite clickjacking |
+| **HTTP Headers** | X-XSS-Protection ausente | Médio | Sem proteção contra XSS |
+| **HTTP Headers** | X-Content-Type-Options ausente | Médio | Permite MIME sniffing |
+| **HTTP Headers** | Strict-Transport-Security ausente | Médio | Sem forçar HTTPS |
+| **Cookies** | HttpOnly flag não configurada (PHPSESSID) | Médio | Cookie acessível via JavaScript |
+| **Cookies** | HttpOnly flag não configurada (security) | Médio | Cookie acessível via JavaScript |
+| **Cookies** | Secure flag não configurada (PHPSESSID) | Médio | Cookie transmitido em texto claro |
+| **Cookies** | Secure flag não configurada (security) | Médio | Cookie transmitido em texto claro |
+
+### Resumo das Vulnerabilidades por Categoria
+
+| Categoria | Quantidade | Status |
+|-----------|------------|---------|
+| HTTP Security Headers | 4 vulnerabilidades | ❌ Crítico |
+| Cookie Security | 4 vulnerabilidades | ❌ Crítico |
+| Content Security Policy | 1 vulnerabilidade |  Médio |
+| SQL Injection | 0 vulnerabilidades | Seguro |
+| XSS | 0 vulnerabilidades | Seguro |
+| Path Traversal | 0 vulnerabilidades |  Seguro |
+
+### Impacto Geral
+
+**Configurações de segurança inadequadas:**
+- Ataques cross-site (XSS)
+- Clickjacking
+- Exposição de dados sensíveis
+- Session hijacking
+
+### Recomendações
+
+1. **Implementar cabeçalhos de segurança HTTP**
+2. **Configurar flags de segurança em cookies**
+3. **Adotar Content Security Policy**
+4. **Forçar uso de HTTPS**
+5. **Proteger contra clickjacking**
+6. **Bloquear MIME sniffing**
+7. **Isolar cookies de scripts client-side**
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
