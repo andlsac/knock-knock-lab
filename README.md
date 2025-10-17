@@ -197,7 +197,7 @@ O Medusa testa automaticamente todas as combinações de usuários e senhas dos 
 O ataque foi bem-sucedido, revelando a credencial válida: **`msfadmin` / `msfadmin`**.
 
 **Evidência:**
-![Sucesso no Ataque FTP](images/ftp_success.png)
+![Sucesso no Ataque FTP](images/ftpimagem.png)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 ### Cenário 2: Força Bruta em Formulário Web (DVWA)
