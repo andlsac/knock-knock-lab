@@ -100,6 +100,23 @@ Esses serviços foram selecionados como alvos para a próxima fase.
 
 **📄 Output completo disponível em:** `./logs/nikto_scan.txt`
 
+**📊 Principais Vulnerabilidades Detectadas:**
+
+| Vulnerabilidade | Severidade | Evidência |
+|----------------|------------|-----------|
+| Servidor Apache desatualizado (2.2.8) | 🔴 Alta | Versão EOL identificada |
+| Arquivo phpinfo.php exposto | 🔴 Alta | Informações do sistema acessíveis |
+| Diretórios sensíveis acessíveis (/doc/, /test/) | 🟡 Média | Listagem de diretórios ativa |
+| Método TRACE ativo | 🟡 Média | Vulnerável a Cross-Site Tracing |
+| phpMyAdmin acessível sem restrições | 🔴 Alta | Painel administrativo exposto |
+
+**Nota Técnica:**
+- **Servidor:** Apache/2.2.8 (Ubuntu) + PHP/5.2.4
+- **Problemas de Configuração:** Cabeçalhos de segurança ausentes (X-Frame-Options, X-Content-Type)
+- **Arquivos Expostos:** phpinfo.php, phpMyAdmin, diretórios do sistema
+
+**Recomendação Imediata:** Atualizar servidor web e restringir acesso a arquivos sensíveis.
+
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
