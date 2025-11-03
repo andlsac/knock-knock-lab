@@ -2,6 +2,18 @@
 Laboratório prático de auditoria de segurança para demonstrar vulnerabilidades de força bruta. Ambiente configurado com Kali/Metasploitable 2, executando ataques com Medusa e propondo medidas de mitigação para os serviços testados. #Pentest #EthicalHacking #DIO
 
 
+
+    🚫 🚨 AVISO LEGAL 🚨 🚫
+
+    ❗ Disclaimer de Uso:
+    › Apenas para fins educacionais e de pesquisa
+    › Use por sua conta e risco
+    › Não use para atividades ilegais
+    › Responsabilidade é exclusivamente do usuário
+
+
+
+
 # Desafio de Projeto DIO: Laboratório de Pentest com Kali Linux e Medusa
 
 ![Licença](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -317,6 +329,396 @@ Este projeto está licenciado sob a Licença MIT. Consulte o arquivo `LICENSE` p
 ---
 
 ## Autor
+
+**André Luís Alves Campos**
+
+-------------------------------------------------------------------------
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/andlsac)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/andlsac)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/andlsac)
+
+----
+
+# ENGLISH Version
+
+### knock-knock-lab
+
+Practical security auditing lab to demonstrate brute-force vulnerabilities. Environment configured with Kali/Metasploitable 2, executing attacks with Medusa and proposing mitigation measures for the tested services. #Pentest #EthicalHacking #DIO
+
+# DIO Project Challenge: Pentest Lab with Kali Linux and Medusa
+
+🚫 🚨 LEGAL WARNING 🚨 🚫
+
+    ❗ Usage Disclaimer:
+    › Educational and research purposes only
+    › Use at your own risk
+    › Do not use for illegal activities
+    › User bears all responsibility
+
+![alt text](https://img.shields.io/badge/license-MIT-blue.svg)
+
+  
+
+![alt text](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kali-linux&logoColor=white)
+
+  
+
+![alt text](https://img.shields.io/badge/VMware_Fusion-607078?style=for-the-badge&logo=vmware&logoColor=white)
+
+## Table of Contents
+
+- [Project Overview](https://www.google.com/url?sa=E&q=#project-overview)
+    
+- [Learning Objectives](https://www.google.com/url?sa=E&q=#learning-objectives)
+    
+- [Phase 1: Environment Setup (Lab Configuration)](https://www.google.com/url?sa=E&q=#phase-1-environment-setup-lab-configuration)
+    
+- [Phase 2: Reconnaissance (Information Gathering)](https://www.google.com/url?sa=E&q=#phase-2-reconnaissance-information-gathering)
+    
+- [Phase 3: Attack Execution (Exploitation)](https://www.google.com/url?sa=E&q=#phase-3-attack-execution-exploitation)
+    
+    - [Scenario 1: Brute-Force on FTP Service](https://www.google.com/url?sa=E&q=#scenario-1-brute-force-on-ftp-service)
+        
+    - [Scenario 2: Brute-Force on Web Form (DVWA)](https://www.google.com/url?sa=E&q=#scenario-2-brute-force-on-web-form-dvwa)
+        
+    - [Scenario 3: Password Spraying on SMB Service](https://www.google.com/url?sa=E&q=#scenario-3-password-spraying-on-smb-service)
+        
+- [Phase 4: Risk Analysis and Recommendations (Mitigation)](https://www.google.com/url?sa=E&q=#phase-4-risk-analysis-and-recommendations-mitigation)
+    
+- [Conclusion and Learnings](https://www.google.com/url?sa=E&q=#conclusion-and-learnings)
+    
+- [License](https://www.google.com/url?sa=E&q=#license)
+    
+- [Author](https://www.google.com/url?sa=E&q=#author)
+    
+
+---
+
+## Project Overview
+
+This repository documents the execution of the **[Digital Innovation One (DIO)](https://www.google.com/url?sa=E&q=https%3A%2F%2Fwww.dio.me%2F)** Project Challenge, focused on simulating brute-force attacks in a controlled lab environment. The goal is to demonstrate the practical application of pentesting techniques, using Kali Linux and the Medusa tool against vulnerable targets such as Metasploitable 2 and the DVWA web application.
+
+The entire process, from environment setup to proposing security measures, is detailed in this document.
+
+---
+
+## Learning Objectives
+
+Upon completion of this challenge, the following objectives were achieved:
+
+- **Practical Understanding:** Deep understanding of how brute-force attacks are executed against different protocols (FTP, HTTP, SMB).
+    
+- **Tool Usage:** Proficient use of Kali Linux and Medusa to perform security audits ethically.
+    
+- **Technical Documentation:** Ability to document a pentesting process clearly, structured, and reproducibly.
+    
+- **Vulnerability Analysis:** Recognition of common weaknesses related to passwords and authentication.
+    
+- **Solution Proposition:** Capacity to recommend countermeasures and security best practices to mitigate identified risks.
+    
+
+---
+
+## Phase 1: Environment Setup (Lab Configuration)
+
+To ensure a secure and isolated environment, the entire simulation was performed on virtual machines.
+
+### 1.1. Software Used
+
+- **Virtualizer:** VMWare and UTM version X.X.X
+    
+- **Attack Machine:** Kali Linux version 2025.X
+    
+- **Target Machine:** Metasploitable 2
+    
+
+### 1.2. Network Configuration
+
+Both virtual machines were configured to use a **"Host-Only Network"**. This creates a private network between the host machine and the VMs, completely isolating the lab traffic from the external network.
+
+- **IP Address - Kali Linux:** xxx.xxx.xxx.xxx - **IP Address - Metasploitable 2:** 192.168.1.9 ### 1.3. Connectivity Verification  
+    After configuration, connectivity between the machines was validated with the ping command.
+    
+
+**Command (executed on Kali):**
+
+code Bash
+
+downloadcontent_copy
+
+expand_less
+
+    `ping -c 4 192.168.1.9`
+  
+
+**Evidence:**  
+Here's an image showing the ping check:
+![Verificação de Ping](images/ping_check.png)
+
+
+----
+## Phase 2: Reconnaissance (Information Gathering) and Automated Tool Analysis
+
+Before any attack, reconnaissance was performed to identify open services and ports on the target. The `nmap` tool was used for this purpose.
+
+**Command (executed on Kali):**
+```bash
+nmap -sV -p- 192.168.1.9
+```
+**Command Parameters:**
+- `-sV`: Attempts to determine the version of services running on open ports.
+- `-p-`: Scans all 65535 TCP ports.
+
+**Results:**
+The scan revealed several open ports, including:
+- `Port 21/tcp`: **FTP** service (vsftpd 2.3.4)
+- `Port 22/tcp`: **SSH** service OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+- `Port 80/tcp`: **HTTP** service (Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+- `Port 445/tcp`: **netbios-ssn** service (amba smbd 3.X - 4.X (workgroup: WORKGROUP))
+These services were selected as targets for the next phase.
+
+**Evidence:**
+Here's an image showing the Nmap scan results: 
+![Resultado do Nmap](images/nmap_scan.png)
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+## Vulnerability Analysis with Automated Tools
+
+### 2.1 Web Server Scanner (Nikto)
+**Objective:** Identify configuration issues and known vulnerabilities on the server.
+
+**Full output available in:** `./logs/nikto_scan.txt`
+
+**Key Vulnerabilities Detected:**
+
+| Vulnerability | Risk | Evidence |
+|---|---|---|
+| Outdated Apache server (2.2.8) | High | EOL version identified |
+| Exposed phpinfo.php file | High | System information accessible |
+| Accessible sensitive directories (/doc/, /test/) | Medium | Directory listing active |
+| TRACE method active | Medium | Vulnerable to Cross-Site Tracing |
+| phpMyAdmin accessible without restrictions | High | Administrative panel exposed |
+
+**Technical Note:**
+- **Server:** Apache/2.2.8 (Ubuntu) + PHP/5.2.4
+- **Configuration Issues:** Missing security headers (X-Frame-Options, X-Content-Type)
+- **Exposed Files:** phpinfo.php, phpMyAdmin, system directories
+
+**Immediate Recommendation:** Update web server and restrict access to sensitive files.
+
+## 2.2 Web Application Scanner (Wapiti)
+
+**Objective:** Analyze specific vulnerabilities in the DVWA application.
+
+**Full output available in:** `./logs/scan_wapiti.txt`
+
+**Key Vulnerabilities Detected:**
+
+| Category | Vulnerability | Risk | Evidence |
+|---|---|---|---|
+| **Content Security Policy** | CSP not configured | Medium | Missing Content-Security-Policy header |
+| **HTTP Headers** | X-Frame-Options missing | Medium | Allows clickjacking |
+| **HTTP Headers** | X-XSS-Protection missing | Medium | No XSS protection |
+| **HTTP Headers** | X-Content-Type-Options missing | Medium | Allows MIME sniffing |
+| **HTTP Headers** | Strict-Transport-Security missing | Medium | No HTTPS enforcement |
+| **Cookies** | HttpOnly flag not configured (PHPSESSID) | Medium | Cookie accessible via JavaScript |
+| **Cookies** | HttpOnly flag not configured (security) | Medium | Cookie accessible via JavaScript |
+| **Cookies** | Secure flag not configured (PHPSESSID) | Medium | Cookie transmitted in clear text |
+| **Cookies** | Secure flag not configured (security) | Medium | Cookie transmitted in clear text |
+
+### Summary of Vulnerabilities by Category
+
+| Category | Quantity | Status |
+|---|---|---|
+| HTTP Security Headers | 4 vulnerabilities | Critical |
+| Cookie Security | 4 vulnerabilities | Critical |
+| Content Security Policy | 1 vulnerability | Medium |
+| SQL Injection | 0 vulnerabilities | Secure |
+| XSS | 0 vulnerabilities | Secure |
+| Path Traversal | 0 vulnerabilities | Secure |
+
+### Overall Impact
+
+**Inadequate security configurations:**
+- Cross-site attacks (XSS)
+- Clickjacking
+- Exposure of sensitive data
+- Session hijacking
+
+### Recommendations
+
+1.  **Implement HTTP security headers**
+2.  **Configure security flags on cookies**
+3.  **Adopt Content Security Policy**
+4.  **Enforce HTTPS usage**
+5.  **Protect against clickjacking**
+6.  **Block MIME sniffing**
+7.  **Isolate cookies from client-side scripts**
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Phase 3: Attack Execution (Exploitation)
+
+With the targets identified, the **Medusa** tool was used to execute brute-force attacks.
+
+### Scenario 1: Brute-Force on FTP Service
+
+-   **Objective:** Gain unauthorized access to the FTP service (port 21) on Metasploitable 2.
+-   **Wordlists Used:**
+    -   `usuarios.txt` (containing `root`, `admin`, `msfadmin`)
+    -   `senhas.txt` (containing `toor`, `admin`, `msfadmin`, `password`)
+
+**Command (executed on Kali):**
+```bash
+medusa -h 192.168.1.9 -U usuarios.txt -P senhas.txt -M ftp
+```
+**Command Parameters:**
+`-h` 192.168.1.9: The -h parameter (for host) specifies the target of the attack, which is the IP address 192.168.1.9.
+`-U` usuarios.txt: The -U parameter (for User file) indicates the file containing the list of users to be tested.
+`-P` senhas.txt: The -P parameter (for Password file) indicates the file containing the list of passwords to be tested for each user.
+`-M` ftp: The -M parameter (for Module) defines which service (module) will be attacked. In this case, it was ftp.
+
+**How it works:**
+Medusa automatically tests all combinations of users and passwords from the files against the FTP service on server 192.168.1.9.
+
+**Results:**
+The attack was successful, revealing the valid credential: **`msfadmin` / `msfadmin`**.
+
+**Evidence:**
+Here's an image showing the successful FTP attack: 
+![Sucesso no Ataque FTP](images/ftpimagem.png)
+---
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+### Scenario 2: Brute-Force on Web Form (DVWA)
+
+-   **Objective:** Compromise the login form of the "Brute Force" page of the Damn Vulnerable Web Application (DVWA), running on Metasploitable 2 and configured with security at `Low` level.
+
+**Command (executed on Kali):**
+```bash
+hydra -L usuarios.txt -P senhas.txt 192.168.1.9 http-post-form \
+"/dvwa/login.php:username=^USER^&password=^PASS^&Login=Login:F=Login failed"
+```
+**Command Parameters:**
+- `-L usuarios.txt`: File containing a list of users to test.
+- `-P senhas.txt`: File containing a list of passwords to test.
+- `192.168.1.9`: IP of the server/target of the attack.
+- `http-post-form`: Module for attacking web forms via POST.
+- `-m FORM:"..."`: Defines the URL and form parameters, using `^USER^` and `^PASS^` as placeholders.
+
+**Form Structure:**
+- `/dvwa/login.php`: Form URL.
+- `username=^USER^&password=^PASS^&Login=Login`: Form parameters, using `^USER^` and `^PASS^` as placeholders.
+- `F=Login failed`: Expected error message.
+
+**How it works:**
+Hydra automatically tests all combinations of users and passwords from the files, substituting ^USER^ and ^PASS^ with each attempt, and stops when valid credentials are found (when the "Login failed" message does not appear).
+
+**Results:**
+[80][http-post-form] host: 192.168.1.9 login: admin password: password
+
+The password for user `admin` was discovered: **`password`**.
+
+**Evidence:**
+Here's an image showing the successful DVWA attack: 
+![Sucesso no Ataque DVWA](images/dvwa_success.png)
+
+-----------
+
+
+
+__________________________________________________________________________________________________________________________________________________
+
+## Scenario 3: Password Spraying on SMB Service
+
+-   **Objective:** Execute a *Password Spraying* attack against the SMB service (port 445), testing a single weak password against multiple users.
+-   **Passwords Tested:** `password` and `msfadmin`
+
+**Command (executed on Kali):**
+```bash
+hydra -L usuarios.txt -p msfadmin 192.168.1.9 smb -V
+```
+**Command Parameters:**
+- `-L usuarios.txt`: File containing a list of users to test.
+- `-p msfadmin`: Uses a fixed password (msfadmin) for all users.
+- `192.168.1.9`: IP of the server/target of the attack.
+- `smb`: Module for attacking the SMB protocol (Server Message Block - Windows file sharing).
+- `-V`: Verbose mode - shows each attempt in real-time.
+
+**How it works:**
+Hydra tests each user from the `usuarios.txt` file with the fixed password `msfadmin` on the target's SMB service, showing all attempts on the screen due to the `-V` flag.
+
+**Difference from previous scenario:**
+    Before: Web form attack with multiple passwords.
+    Now: SMB service attack with a fixed password and multiple users.
+
+**Results:**
+The attack identified that the user **`msfadmin`** had the password `msfadmin`, allowing access to network shares.
+
+**Evidence:**
+Here's an an image showing the successful SMB attack: 
+![Sucesso no Ataque SMB](images/smbimagem.png)
+---
+
+
+## Phase 4: Risk Analysis and Recommendations (Mitigation)
+
+*The attacks demonstrated that weak passwords pose a critical risk to service security. The following countermeasures are recommended:*
+
+| Identified Risk | Mitigation Measure | Why It's Important? |
+| :------------------| :------------------ | :-------------------- |
+| **Weak and Default Passwords** | Implement a **Strong Password Policy** (length, complexity, history). | Exponentially makes password guessing by automated tools more difficult. |
+| **Unlimited Login Attempts** | Configure **Account Lockout** after X failed attempts. | Prevents an attacker from testing millions of passwords in a short period, making the attack unfeasible. |
+| **Web Attack Automation** | Use **CAPTCHA** or reCAPTCHA on login forms. | Adds a layer that requires human interaction, breaking most brute-force scripts. |
+| **Credential Compromise** | Enable **Multi-Factor Authentication (MFA)**. | **The most effective measure.** Even if the password is stolen, the attacker will not have the second factor (token, biometric, etc.). |
+| **Lack of Visibility** | Implement **Monitoring and Alerts** for multiple failed login attempts. | Allows the security team to detect and respond to an ongoing attack before it succeeds. |
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Conclusion
+
+The lab highlighted critical vulnerabilities that compromise system security. The most urgent points for correction are:
+
+### Critical Points to Be Corrected Immediately:
+
+1.  **Default and Weak Credentials**
+    - Remove default passwords like "msfadmin" and "password"
+    - Implement a complex password policy with a minimum of 12 characters
+
+2.  **Brute-Force Protection**
+    - Configure automatic account lockout after 5 failed attempts
+    - Implement progressive delays between login attempts
+
+3.  **Outdated Services**
+    - Update Apache 2.2.8 to a supported version
+    - Update PHP 5.2.4 to the current version
+    - Patch the vulnerable vsftpd 2.3.4
+
+4.  **Web Security Configurations**
+    - Implement security headers (CSP, X-Frame-Options)
+    - Configure security flags on cookies (HttpOnly, Secure)
+    - Remove sensitive files like phpinfo.php
+
+5.  **Lack of Multi-Factor Authentication**
+    - Implement MFA for administrative access
+    - Add an extra layer of protection for critical logins
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+---
+
+## Author
 
 **André Luís Alves Campos**
 
